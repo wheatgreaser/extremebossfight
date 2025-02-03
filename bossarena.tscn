@@ -136,6 +136,21 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gyj0a"]
 
+[sub_resource type="Animation" id="Animation_qbqbn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_owuak"]
 resource_name = "dragonmovement"
 length = 5.0
@@ -151,21 +166,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(21.3697, -9.21784, 0), Vector3(41.2285, 1.56912, 0), Vector3(21.3697, -9.21784, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qbqbn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_csrwu"]
@@ -240,7 +240,7 @@ script = ExtResource("2_hefy3")
 script = ExtResource("5_jd1e6")
 
 [node name="Timer" type="Timer" parent="Dragon"]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dragon"]
