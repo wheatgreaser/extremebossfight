@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://djwsk7wyus21t"
+path="res://.godot/imported/Viking Sword.obj-5e56bc407626ec56be11ac2f75d93360.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Viking Sword.obj-5e56bc407626ec56be11ac2f75d93360.mesh"]
+
+source_file="res://Viking Sword.obj"
+dest_files=["res://.godot/imported/Viking Sword.obj-5e56bc407626ec56be11ac2f75d93360.mesh", "res://.godot/imported/Viking Sword.obj-5e56bc407626ec56be11ac2f75d93360.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,260 @@
+[gd_scene load_steps=26 format=3 uid="uid://br7wif4xfg3pp"]
+
+[ext_resource type="Script" path="res://movement.gd" id="1_qfluq"]
+[ext_resource type="Script" path="res://Timer.gd" id="2_hefy3"]
+[ext_resource type="Script" path="res://sword.gd" id="3_44v25"]
+[ext_resource type="ArrayMesh" uid="uid://djwsk7wyus21t" path="res://Viking Sword.obj" id="3_qehsf"]
+[ext_resource type="Script" path="res://dragon.gd" id="5_jd1e6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q8oj0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_3vig4"]
+sky_material = SubResource("ProceduralSkyMaterial_q8oj0")
+
+[sub_resource type="Environment" id="Environment_yf70l"]
+background_mode = 2
+sky = SubResource("Sky_3vig4")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4600a"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j8wnr"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_38ib5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7axrc"]
+
+[sub_resource type="Animation" id="Animation_itcit"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.35324, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.07781, -0.459109, -0.702454)]
+}
+
+[sub_resource type="Animation" id="Animation_f2joa"]
+resource_name = "sword_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(2.35324, 0, 0), Vector3(1.25166, 0.558401, -1.04049e-07), Vector3(2.35324, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.07781, -0.459109, -0.702454), Vector3(0.508, -0.459, -0.497797), Vector3(1.07781, -0.459109, -0.702454)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_httwd"]
+_data = {
+"RESET": SubResource("Animation_itcit"),
+"sword_attack": SubResource("Animation_f2joa")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m4qtl"]
+
+[sub_resource type="Animation" id="Animation_kleur"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dv4on"]
+resource_name = "flip"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.0472, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hpdt6"]
+_data = {
+"RESET": SubResource("Animation_kleur"),
+"flip": SubResource("Animation_dv4on")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_5dxni"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gyj0a"]
+
+[sub_resource type="Animation" id="Animation_owuak"]
+resource_name = "dragonmovement"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(21.3697, -9.21784, 0), Vector3(41.2285, 1.56912, 0), Vector3(21.3697, -9.21784, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qbqbn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_csrwu"]
+resource_name = "dragonmovement2"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qo23x"]
+_data = {
+"RESET": SubResource("Animation_qbqbn"),
+"dragonmovement": SubResource("Animation_owuak"),
+"dragonmovement2": SubResource("Animation_csrwu")
+}
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yf70l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_4600a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_j8wnr")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_qfluq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29995, 0)
+mesh = SubResource("CapsuleMesh_38ib5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29995, 0)
+shape = SubResource("CapsuleShape3D_7axrc")
+
+[node name="Neck" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09115, 0)
+
+[node name="VikingSword" type="MeshInstance3D" parent="CharacterBody3D/Neck"]
+transform = Transform3D(2, 0, 0, 0, -1.41003, -1.41839, 0, 1.41839, -1.41003, 1.07781, -0.459109, -0.702454)
+mesh = ExtResource("3_qehsf")
+skeleton = NodePath("../../..")
+script = ExtResource("3_44v25")
+
+[node name="chillanimplayer" type="AnimationPlayer" parent="CharacterBody3D/Neck/VikingSword"]
+libraries = {
+"": SubResource("AnimationLibrary_httwd")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Neck/VikingSword"]
+transform = Transform3D(0.1, 2.98023e-08, 1.67638e-08, 2.98023e-08, 1, -3.72529e-09, -1.21072e-08, -1.49012e-08, 0.1, 0.00495309, -0.354968, -0.00576794)
+shape = SubResource("BoxShape3D_m4qtl")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D"]
+libraries = {
+"": SubResource("AnimationLibrary_hpdt6")
+}
+
+[node name="Timer" type="Timer" parent="CharacterBody3D"]
+one_shot = true
+script = ExtResource("2_hefy3")
+
+[node name="Dragon" type="CharacterBody3D" parent="."]
+script = ExtResource("5_jd1e6")
+
+[node name="Timer" type="Timer" parent="Dragon"]
+wait_time = 5.0
+one_shot = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dragon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8719, 11.1195, 0)
+mesh = SubResource("BoxMesh_5dxni")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dragon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8975, 11.1232, -0.0263999)
+shape = SubResource("BoxShape3D_gyj0a")
+
+[node name="funnylilplayer" type="AnimationPlayer" parent="Dragon"]
+libraries = {
+"": SubResource("AnimationLibrary_qo23x")
+}
+
+[connection signal="timeout" from="CharacterBody3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
+[connection signal="timeout" from="Dragon/Timer" to="Dragon" method="_on_timer_timeout"]

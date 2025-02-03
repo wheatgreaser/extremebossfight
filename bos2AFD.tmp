@@ -1,0 +1,188 @@
+[gd_scene load_steps=18 format=3 uid="uid://br7wif4xfg3pp"]
+
+[ext_resource type="Script" path="res://movement.gd" id="1_qfluq"]
+[ext_resource type="Script" path="res://Timer.gd" id="2_hefy3"]
+[ext_resource type="Script" path="res://sword.gd" id="3_44v25"]
+[ext_resource type="ArrayMesh" uid="uid://djwsk7wyus21t" path="res://Viking Sword.obj" id="3_qehsf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q8oj0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_3vig4"]
+sky_material = SubResource("ProceduralSkyMaterial_q8oj0")
+
+[sub_resource type="Environment" id="Environment_yf70l"]
+background_mode = 2
+sky = SubResource("Sky_3vig4")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4600a"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j8wnr"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_38ib5"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8h1xd"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="Animation" id="Animation_f2joa"]
+resource_name = "sword_attack"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.35324, 0, 0), Vector3(1.25166, 0.403538, -2.30697e-08)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.07781, -0.459109, -0.702454)]
+}
+
+[sub_resource type="Animation" id="Animation_itcit"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.35324, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.07781, -0.459109, -0.702454)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_httwd"]
+_data = {
+"RESET": SubResource("Animation_itcit"),
+"sword_attack": SubResource("Animation_f2joa")
+}
+
+[sub_resource type="Animation" id="Animation_kleur"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dv4on"]
+resource_name = "flip"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.0472, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hpdt6"]
+_data = {
+"RESET": SubResource("Animation_kleur"),
+"flip": SubResource("Animation_dv4on")
+}
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yf70l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_4600a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_j8wnr")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_qfluq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29995, 0)
+mesh = SubResource("CapsuleMesh_38ib5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29995, 0)
+shape = SubResource("ConvexPolygonShape3D_8h1xd")
+
+[node name="Neck" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09115, 0)
+
+[node name="VikingSword" type="MeshInstance3D" parent="CharacterBody3D/Neck"]
+transform = Transform3D(2, 0, 0, 0, -1.41004, -1.41838, 0, 1.41838, -1.41004, 1.07781, -0.459109, -0.702454)
+mesh = ExtResource("3_qehsf")
+skeleton = NodePath("../../..")
+script = ExtResource("3_44v25")
+
+[node name="chillanimplayer" type="AnimationPlayer" parent="CharacterBody3D/Neck/VikingSword"]
+libraries = {
+"": SubResource("AnimationLibrary_httwd")
+}
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody3D"]
+libraries = {
+"": SubResource("AnimationLibrary_hpdt6")
+}
+
+[node name="Timer" type="Timer" parent="CharacterBody3D"]
+one_shot = true
+script = ExtResource("2_hefy3")
+
+[connection signal="timeout" from="CharacterBody3D/Timer" to="CharacterBody3D" method="_on_timer_timeout"]
